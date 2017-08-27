@@ -1,10 +1,16 @@
 
+# git smudge and clean example
+> Help you avoid to commit your sensitive keywords
 
-### Setup Steps:
+git filter details, see https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes
+![git filter smudge](https://git-scm.com/book/en/v2/images/smudge.png)
+![git filte clean](https://git-scm.com/book/en/v2/images/clean.png)
+
+## Setup Steps:
 
 #### Add `keyfilter.py`
 1. copy `keyfilter.py` into your project
-2. to avoid committed `keyfilter.py` add 
+2. to avoid committed `keyfilter.py`, add it into `.gitignore`
 
 #### Add `Git Attributes`
 
@@ -32,4 +38,13 @@ git config filter.keyfilter.clean "python keyfilter.py --clean"
 3. Or add `.gitconfig` as local, which will be committed with your project. and add content in last step
 ```
 git config --local include.path ../.gitconfig
+```
+
+## Note:
+1. Avoid to use simple keywords, which may conflict with replace content, for example:
+```
+{
+    "username": "user"
+    "password": "pass"
+}
 ```
