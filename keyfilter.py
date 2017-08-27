@@ -8,9 +8,9 @@ REPLACE_CONTENT = [
 def usage():
     print """usage:
         1. for git smudge 
-            python keyfilter --smudge
+            python keyfilter.py --smudge
         2. for git clean
-            python keyfilter --smudge
+            python keyfilter.py --clean
         """
 
 def smudge():
