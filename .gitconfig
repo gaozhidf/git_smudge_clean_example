@@ -1,0 +1,3 @@
+[filter "keyfilter"]
+        smudge = python keyfilter.py --smudge
+        clean = python keyfilter.py --clean
