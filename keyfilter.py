@@ -19,12 +19,12 @@ def smudge():
         replace keyword list in line
         https://stackoverflow.com/questions/2484156/is-str-replace-replace-ad-nauseam-a-standard-idiom-in-python
         '''
-        reduce(lambda s, r: s.replace(*r), REPLACE_CONTENT, line)
+        line = reduce(lambda s, r: s.replace(*r), REPLACE_CONTENT, line)
         sys.stdout.write(line)
 
 def clean():
     for line in sys.stdin:
-        reduce(lambda s, r: s.replace(*r[::-1]), REPLACE_CONTENT, line)
+        line = reduce(lambda s, r: s.replace(*r[::-1]), REPLACE_CONTENT, line)
         sys.stdout.write(line)
 
 if __name__ == '__main__':
