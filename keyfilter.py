@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import sys
 
 REPLACE_CONTENT = [
@@ -6,35 +8,34 @@ REPLACE_CONTENT = [
 ]
 
 def usage():
-    print """usage:
-        1. for git smudge 
-            python keyfilter.py --smudge
+    print("""usage:
+        1. for git smudge
+            python keyfilter.py smudge
         2. for git clean
-            python keyfilter.py --clean
-        """
+            python keyfilter.py clean
+        """)
 
 def smudge():
     for line in sys.stdin:
-        '''
-        replace keyword list in line
-        https://stackoverflow.com/questions/2484156/is-str-replace-replace-ad-nauseam-a-standard-idiom-in-python
-        '''
-        line = reduce(lambda s, r: s.replace(*r), REPLACE_CONTENT, line)
+        for a in REPLACE_CONTENT:
+            line = line.replace(*a[::-1])
         sys.stdout.write(line)
 
 def clean():
     for line in sys.stdin:
-        line = reduce(lambda s, r: s.replace(*r[::-1]), REPLACE_CONTENT, line)
+        for a in REPLACE_CONTENT:
+            line = line.replace(*a)
         sys.stdout.write(line)
 
 if __name__ == '__main__':
     try:
-        if sys.argv[1] == '--smudge':
+        if sys.argv[1] == 'smudge':
             smudge()
-        elif sys.argv[1] == '--clean':
+        elif sys.argv[1] == 'clean':
             clean()
         else:
             usage()
-    except Exception, e:
-        print e
+    except Exception as e:
+        print(e)
         usage()
+
